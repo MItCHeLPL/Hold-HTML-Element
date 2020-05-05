@@ -1,30 +1,77 @@
-function longpress(time, element)
+function longpress(time, loadingBarId, element)
 {
     var mouseIsDown = true;
     var loadingBarProgress = 0;
 
-    element.addEventListener("mouseup", function(){
-        mouseIsDown = false;
-        clearInterval(interval);
-    }); 
+    //Loading bar position
+    var x = 0;
+    var y = 0;
 
+    //Display loading bar
+    document.getElementById(loadingBarId).style.display="block";
+
+    //Loading bar progress update
+    var loadingBarUpdateInterval = setInterval(function(){
+        loadingBar(loadingBarProgress, time);
+    }, 100);
+
+    //Loading bar position by the cursor
+    element.addEventListener("mousemove", function(e){
+        x = (e.pageX-element.offsetLeft);
+        y = (e.pageY-element.offsetTop);
+    });
+
+    var loadingBarPositionUpdateInterval = setInterval(function(){
+        loadingBarPositon(loadingBarId, x, y);
+    }, 1);
+
+
+    //Base interval for longpress
     var interval = setInterval(function(){
         afterLongpress(element);
         
+        clearLoadingBar(loadingBarId);
+        clearInterval(loadingBarPositionUpdateInterval);
+        clearInterval(loadingBarUpdateInterval);
         clearInterval(interval);
-        clearInterval(loadingBarInterval);
     }, time * 1000);
 
-    var loadingBarInterval = setInterval(function(){
-        loadingBar(loadingBarProgress, time);
-    }, 100);
+
+    //Cancel longpress
+    element.addEventListener("mouseup", function(){
+        mouseIsDown = false;
+
+        clearInterval(interval);
+        clearInterval(loadingBarPositionUpdateInterval);
+        clearInterval(loadingBarUpdateInterval);
+        clearLoadingBar(loadingBarId);
+    }); 
 }
 
 function loadingBar(loadingBarProgress, time)
 {
-    console.log(loadingBarProgress);
+    //console.log(loadingBarProgress);
 }
 
+function loadingBarPositon(loadingBarId, x, y)
+{
+    var bar = document.getElementById(loadingBarId);
+    
+    bar.style.top = y+"px";
+    bar.style.left = x+"px";
+}
+
+function clearLoadingBar(loadingBarId)
+{
+    var bar = document.getElementById(loadingBarId);
+
+    bar.style.display = "none";
+
+    bar.style.top = 0;
+    bar.style.left = 0;
+}
+
+//when succesfully longpressed
 function afterLongpress(element)
 {
     element.className = "activated";
