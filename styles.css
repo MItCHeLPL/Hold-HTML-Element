@@ -15,6 +15,11 @@ body
     font-size: 24px;
 
     color: white;
+    background-color: #212121;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1
@@ -33,15 +38,12 @@ h1
 
 div
 {
-    position:absolute;
+    height:75vh;
+    width:60em;
 
-    top:0;
-    left:0;
-    bottom:0;
-    right:0;
+    position: fixed;
 
-    height:100%;
-    width:100%;
+    top: 12.5%;
 
     display: flex;
     justify-content: center;
@@ -59,7 +61,7 @@ div
 }
 
 
-/*Longpress progress*/
+/*Longpress loading bar*/
 #loadingBar
 {
     /*Optional*/

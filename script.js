@@ -1,6 +1,12 @@
 var loadingBarProgress = 0;
 
-function longpress(time, element, loadingBarId)
+/**
+ * Hold left mouse button to activate. You should put this function in onmousedown argument of desired HTML element.
+ * @param  {Number} time How long to activate
+ * @param  {Node} element What element you want to use as listener (you should use 'this' by default)
+ * @param  {String} loadingBarId Loading bar ID (optional)
+ */
+function longPress(time, element, loadingBarId)
 {
     var loadingBarEnabled = false;
 
@@ -14,11 +20,12 @@ function longpress(time, element, loadingBarId)
         //Loading bar position
         var x = 0;
         var y = 0;
-        var loadingBarUpdateRate = 10; //min 5
-    
 
-        //Display loading bar
-        document.getElementById(loadingBarId).style.display="block";
+
+
+        var loadingBarUpdateRate = 10; //You can change this value (min 5)
+
+
 
         //Loading bar progress update
         var loadingBarUpdateInterval = setInterval(function(){
@@ -27,20 +34,27 @@ function longpress(time, element, loadingBarId)
 
         //Loading bar position by the cursor
         element.addEventListener("mousemove", function(e){
-            x = (e.pageX-element.offsetLeft);
-            y = (e.pageY-element.offsetTop);
+            x = (e.clientX);
+            y = (e.clientY);
         });
 
         var loadingBarPositionUpdateInterval = setInterval(function(){
             loadingBarPositon(loadingBarId, x, y);
         }, 1);
+
+        //Display loading bar
+        document.getElementById(loadingBarId).style.display="block";
     }
 
     //Base interval for longpress
     var interval = setInterval(function(){
 
+
+
         afterLongpress(element);//you can change this line to whatever you like script to do after longpress succeded
         
+
+
         if(loadingBarEnabled)
         {
             clearLoadingBar(loadingBarId);
@@ -61,6 +75,15 @@ function longpress(time, element, loadingBarId)
             clearInterval(loadingBarUpdateInterval);
         }
     }); 
+    element.addEventListener("mouseleave", function(){
+        clearInterval(interval);
+        if(loadingBarEnabled)
+        {
+            clearLoadingBar(loadingBarId);
+            clearInterval(loadingBarPositionUpdateInterval);
+            clearInterval(loadingBarUpdateInterval);
+        }
+    }); 
 }
 
 function loadingBar(loadingBarId, time, updateRate)
@@ -70,8 +93,13 @@ function loadingBar(loadingBarId, time, updateRate)
     var unit = (updateRate / time)/10;
     loadingBarProgress += unit;
 
+
+
+    //You can manipulate loading bar here
     bar.style.width = 1-(loadingBarProgress/100)+"em";
     bar.style.height = 1-(loadingBarProgress/100)+"em";
+
+
 }
 
 //set position of loading bar
@@ -79,9 +107,13 @@ function loadingBarPositon(loadingBarId, x, y)
 {
     var bar = document.getElementById(loadingBarId);
     
+
+
     //You can change offsets to whatever you like
     var offsetX = 10;
     var offsetY = 10;
+
+
 
     //Set loading bar position
     bar.style.top = y+offsetY+"px";
@@ -96,6 +128,9 @@ function clearLoadingBar(loadingBarId)
     var bar = document.getElementById(loadingBarId);
     bar.style.display = "none";
 }
+
+
+
 
 
 //When succesfully longpressed
