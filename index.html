@@ -8,7 +8,7 @@
 
         <meta name="author" content="Michał Myszor" />
         
-        <meta name="description" content='Long press' />
+        <meta name="description" content='Hold HTML Element for set amount of time' />
         <meta name=”robots” content=”index” />
 
         <title>Longpress</title>
@@ -18,16 +18,13 @@
     </head>
     <body>
         
-        <!--You can put this function on any HTML element
-        Just insert onmousedown="longPress[time you want to wait], this, [(optional) loading bar ID])" to desired HTML element
-        -->
-        <div class="deactivated" onmousedown="longPress(2, this, 'loadingBar')">
+        <div class="red" id="holdThis">
             <h1>Hold left mouse button for 2sec</h1>
         </div>
 
         <div id="loadingBar"></div>
 
-        <script src="script.js"></script>
+        <script src="Hold.js"></script>
 
     </body>
 </html>
