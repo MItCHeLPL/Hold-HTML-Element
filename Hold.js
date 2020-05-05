@@ -69,7 +69,7 @@ function longPress(mainListener, time, loadingBarEnabled, mobile)
         });
 
         //Display loading bar
-        loadingBar.style.display="inline";
+        loadingBar.style.display="block";
     }
 
     //Base hold interval
@@ -119,8 +119,8 @@ function loadingBarPositon(x, y)
 
 
     //You can change offsets to whatever you like
-    var offsetX = 0;
-    var offsetY = -90;
+    var offsetX = 7.5;
+    var offsetY = 7.5;
 
 
 
