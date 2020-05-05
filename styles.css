@@ -75,6 +75,19 @@ div
     background-color: rgb(194, 63, 63);
 }
 
+.blue
+{
+    color: blue;
+}
+.lightBlue
+{
+    color: lightskyblue;
+}
+.orange
+{
+    color: darkorange;
+}
+
 @media only screen and (max-width: 768px) 
 {
     body
