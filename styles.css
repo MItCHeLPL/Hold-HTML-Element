@@ -57,7 +57,7 @@ div
 {
     margin:0 auto;
     height:7.5em;
-    width:20em;
+    width:17.5em;
     margin-bottom: 2em;
 
     display: flex;
@@ -79,6 +79,8 @@ div
 {
     body
     {
+        font-size: 17px;
+
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         -khtml-user-select: none;
