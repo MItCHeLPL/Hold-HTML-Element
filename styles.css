@@ -18,6 +18,13 @@ body
 h1
 {
     font-size: 7em;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 div
@@ -33,6 +40,7 @@ div
     width:100%;
 
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -55,7 +63,10 @@ div
     height: 1em;
 
     background-color: lightskyblue;
-    border-radius: 45px;
+
+    -webkit-border-radius: 45px; 
+    -moz-border-radius: 45px; 
+    border-radius: 45px; 
 
 
     /*Required*/

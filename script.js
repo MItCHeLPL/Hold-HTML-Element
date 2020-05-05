@@ -50,7 +50,9 @@ function longpress(time, loadingBarId, element)
 
 function loadingBar(loadingBarProgress, time)
 {
-    //console.log(loadingBarProgress);
+    
+    
+    
 }
 
 function loadingBarPositon(loadingBarId, x, y)
@@ -71,8 +73,11 @@ function clearLoadingBar(loadingBarId)
     bar.style.left = 0;
 }
 
-//when succesfully longpressed
+
+//When succesfully longpressed
+//You can change inside of this function to whatever you want
 function afterLongpress(element)
 {
     element.className = "activated";
+    element.firstElementChild.innerHTML = "Success!";
 }
