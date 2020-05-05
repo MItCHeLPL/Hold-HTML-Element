@@ -34,16 +34,13 @@ function longPress(time, element, loadingBarId)
 
         //Loading bar position by the cursor
         element.addEventListener("mousemove", function(e){
-            x = (e.clientX);
-            y = (e.clientY);
+            x = e.clientX;
+            y = e.clientY;
+            loadingBarPositon(loadingBarId, x, y);
         });
 
-        var loadingBarPositionUpdateInterval = setInterval(function(){
-            loadingBarPositon(loadingBarId, x, y);
-        }, 1);
-
         //Display loading bar
-        document.getElementById(loadingBarId).style.display="block";
+        document.getElementById(loadingBarId).style.display="inline";
     }
 
     //Base interval for longpress
@@ -58,7 +55,6 @@ function longPress(time, element, loadingBarId)
         if(loadingBarEnabled)
         {
             clearLoadingBar(loadingBarId);
-            clearInterval(loadingBarPositionUpdateInterval);
             clearInterval(loadingBarUpdateInterval);
         }
         clearInterval(interval);
@@ -71,7 +67,6 @@ function longPress(time, element, loadingBarId)
         if(loadingBarEnabled)
         {
             clearLoadingBar(loadingBarId);
-            clearInterval(loadingBarPositionUpdateInterval);
             clearInterval(loadingBarUpdateInterval);
         }
     }); 
@@ -80,7 +75,6 @@ function longPress(time, element, loadingBarId)
         if(loadingBarEnabled)
         {
             clearLoadingBar(loadingBarId);
-            clearInterval(loadingBarPositionUpdateInterval);
             clearInterval(loadingBarUpdateInterval);
         }
     }); 
