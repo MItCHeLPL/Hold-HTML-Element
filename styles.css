@@ -39,13 +39,13 @@ body
     background-color: #212121;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 h1
 {
-    font-size: 5em;
+    font-size: 2em;
 
     width: 80%;
 
@@ -59,12 +59,9 @@ h1
 
 div
 {
-    height:75vh;
-    width:60em;
-
-    position: fixed;
-
-    top: 12.5%;
+    margin-top: 35vh;
+    height:25vh;
+    width:30em;
 
     display: flex;
     justify-content: center;

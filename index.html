@@ -17,14 +17,18 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-        
-        <div class="red" id="holdThis">
+        <span>Without bar</span>
+        <div class="red" data-hold="standard" data-time="2">
+            <h1>Hold left mouse button for 2sec</h1>
+        </div>
+
+        <span>With bar</span>
+        <div class="red" data-hold="bar" data-time="2">
             <h1>Hold left mouse button for 2sec</h1>
         </div>
 
         <div id="loadingBar"></div>
 
         <script src="Hold.js"></script>
-
     </body>
 </html>
