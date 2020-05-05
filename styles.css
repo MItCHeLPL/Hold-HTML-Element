@@ -10,7 +10,7 @@ body
     clear: both;
 
     text-align: center;
-    
+
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
 
@@ -63,8 +63,8 @@ div
 #loadingBar
 {
     /*Optional*/
-    width: 1em;
-    height: 1em;
+    width: .7em;
+    height: .7em;
 
     background-color: lightskyblue;
 

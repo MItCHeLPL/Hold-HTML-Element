@@ -1,19 +1,22 @@
+var loadingBarProgress = 0;
+
 function longpress(time, loadingBarId, element)
 {
     var mouseIsDown = true;
-    var loadingBarProgress = 0;
 
     //Loading bar position
     var x = 0;
     var y = 0;
+
+    var loadingBarUpdateRate = 50; //min 5
 
     //Display loading bar
     document.getElementById(loadingBarId).style.display="block";
 
     //Loading bar progress update
     var loadingBarUpdateInterval = setInterval(function(){
-        loadingBar(loadingBarProgress, time);
-    }, 100);
+        loadingBar(loadingBarId, time, loadingBarUpdateRate);
+    }, loadingBarUpdateRate);
 
     //Loading bar position by the cursor
     element.addEventListener("mousemove", function(e){
@@ -48,25 +51,34 @@ function longpress(time, loadingBarId, element)
     }); 
 }
 
-function loadingBar(loadingBarProgress, time)
+function loadingBar(loadingBarId, time, updateRate)
 {
-    
-    
+    var unit = (updateRate / time)/10;
+    loadingBarProgress += unit;
 
+    console.log(loadingBarProgress+"%/100%"); //temp
+
+    //loadingBarId.style. ;
 }
 
+//set position of loading bar
 function loadingBarPositon(loadingBarId, x, y)
 {
     var bar = document.getElementById(loadingBarId);
     
-    bar.style.top = y+"px";
-    bar.style.left = x+"px";
+    var offsetX = 7.5;
+    var offsetY = 7.5;
+
+    bar.style.top = y+offsetY+"px";
+    bar.style.left = x+offsetX+"px";
 }
 
 function clearLoadingBar(loadingBarId)
 {
-    var bar = document.getElementById(loadingBarId);
+    loadingBarProgress = 0; //reset progress bar
 
+    //hide loading bar
+    var bar = document.getElementById(loadingBarId);
     bar.style.display = "none";
 }
 
@@ -75,7 +87,6 @@ function clearLoadingBar(loadingBarId)
 //You can change inside of this function to whatever you want
 function afterLongpress(element)
 {
-    console.log("Success!");
     element.className = "activated";
     element.firstElementChild.innerHTML = "Success!";
 }
