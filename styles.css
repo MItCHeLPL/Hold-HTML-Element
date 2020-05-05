@@ -37,15 +37,11 @@ body
 
     color: white;
     background-color: #212121;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 h1
 {
-    font-size: 2em;
+    font-size: 1em;
 
     width: 80%;
 
@@ -59,9 +55,10 @@ h1
 
 div
 {
-    margin-top: 35vh;
-    height:25vh;
-    width:30em;
+    margin:0 auto;
+    height:7.5em;
+    width:20em;
+    margin-bottom: 2em;
 
     display: flex;
     justify-content: center;

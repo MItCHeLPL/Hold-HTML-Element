@@ -119,8 +119,8 @@ function loadingBarPositon(x, y)
 
 
     //You can change offsets to whatever you like
-    var offsetX = 5;
-    var offsetY = -325;
+    var offsetX = 0;
+    var offsetY = -90;
 
 
 
