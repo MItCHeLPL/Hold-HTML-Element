@@ -1,0 +1,47 @@
+html
+{
+    scroll-behavior: smooth;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    clear: both;
+
+    text-align: center;
+    font-size: 24px;
+
+    color: white;
+}
+
+div
+{
+    position:absolute;
+
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+
+    height:100%;
+    width:100%;
+}
+
+.activated
+{
+    background-color: green;
+}
+
+.deactivated
+{
+    background-color: red;
+}
+
+#loadingBar
+{
+    width: 1em;
+    height: 1em;
+
+    background-color: lightskyblue;
+}
