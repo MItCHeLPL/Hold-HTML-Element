@@ -52,7 +52,7 @@ function loadingBar(loadingBarProgress, time)
 {
     
     
-    
+
 }
 
 function loadingBarPositon(loadingBarId, x, y)
@@ -68,9 +68,6 @@ function clearLoadingBar(loadingBarId)
     var bar = document.getElementById(loadingBarId);
 
     bar.style.display = "none";
-
-    bar.style.top = 0;
-    bar.style.left = 0;
 }
 
 
@@ -78,6 +75,7 @@ function clearLoadingBar(loadingBarId)
 //You can change inside of this function to whatever you want
 function afterLongpress(element)
 {
+    console.log("Success!");
     element.className = "activated";
     element.firstElementChild.innerHTML = "Success!";
 }

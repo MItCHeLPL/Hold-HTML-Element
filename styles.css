@@ -10,6 +10,8 @@ body
     clear: both;
 
     text-align: center;
+    
+    font-family: 'Roboto', sans-serif;
     font-size: 24px;
 
     color: white;
@@ -18,6 +20,8 @@ body
 h1
 {
     font-size: 7em;
+
+    width: 80%;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
