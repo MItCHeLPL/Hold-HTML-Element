@@ -35,11 +35,11 @@ mainListenersBar.forEach(function(value, index){
 var loadingBarProgress = 0; //From 0 to 100
 
 /**
- * 
- * @param {*} mainListener 
- * @param {*} time 
- * @param {*} loadingBarEnabled 
- * @param {*} mobile 
+ * Main fuction for initializng intervals ant detecting hold
+ * @param {*} mainListener HTML Element that is being held
+ * @param {*} time How much time to hold element
+ * @param {*} loadingBarEnabled Do you want to use loading bar
+ * @param {*} mobile Does call come from mobile device
  */
 function longPress(mainListener, time, loadingBarEnabled, mobile)
 {  
@@ -63,8 +63,8 @@ function longPress(mainListener, time, loadingBarEnabled, mobile)
 
         //Set loading bar position to the cursor position
         mainListener.addEventListener("mousemove", function(e){
-            x = e.clientX;
-            y = e.clientY;
+            x = e.pageX;
+            y = e.pageY;
             loadingBarPositon(x, y);
         });
 
@@ -117,10 +117,10 @@ function calculateLoadingBar(time)
 function loadingBarPositon(x, y)
 {
 
-    
+
     //You can change offsets to whatever you like
     var offsetX = 5;
-    var offsetY = 5;
+    var offsetY = -325;
 
 
 
