@@ -63,15 +63,16 @@ div
 #loadingBar
 {
     /*Optional*/
-    width: .7em;
-    height: .7em;
+    width: 1em;
+    height: 1em;
 
     background-color: lightskyblue;
 
-    -webkit-border-radius: 45px; 
-    -moz-border-radius: 45px; 
-    border-radius: 45px; 
+    -webkit-border-radius: 50%; 
+    -moz-border-radius: 50%; 
+    border-radius: 50%; 
 
+    border: 1px solid lightskyblue;
 
     /*Required*/
     z-index: 99;

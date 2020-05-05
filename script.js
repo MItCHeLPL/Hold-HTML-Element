@@ -1,64 +1,77 @@
 var loadingBarProgress = 0;
 
-function longpress(time, loadingBarId, element)
+function longpress(time, element, loadingBarId)
 {
-    var mouseIsDown = true;
+    var loadingBarEnabled = false;
 
-    //Loading bar position
-    var x = 0;
-    var y = 0;
+    if(typeof loadingBarId !== "undefined") //loading bar is optional
+    {
+        var loadingBarEnabled = true;
+    }
 
-    var loadingBarUpdateRate = 50; //min 5
+    if(loadingBarEnabled) 
+    {
+        //Loading bar position
+        var x = 0;
+        var y = 0;
+        var loadingBarUpdateRate = 10; //min 5
+    
 
-    //Display loading bar
-    document.getElementById(loadingBarId).style.display="block";
+        //Display loading bar
+        document.getElementById(loadingBarId).style.display="block";
 
-    //Loading bar progress update
-    var loadingBarUpdateInterval = setInterval(function(){
-        loadingBar(loadingBarId, time, loadingBarUpdateRate);
-    }, loadingBarUpdateRate);
+        //Loading bar progress update
+        var loadingBarUpdateInterval = setInterval(function(){
+            loadingBar(loadingBarId, time, loadingBarUpdateRate);
+        }, loadingBarUpdateRate);
 
-    //Loading bar position by the cursor
-    element.addEventListener("mousemove", function(e){
-        x = (e.pageX-element.offsetLeft);
-        y = (e.pageY-element.offsetTop);
-    });
+        //Loading bar position by the cursor
+        element.addEventListener("mousemove", function(e){
+            x = (e.pageX-element.offsetLeft);
+            y = (e.pageY-element.offsetTop);
+        });
 
-    var loadingBarPositionUpdateInterval = setInterval(function(){
-        loadingBarPositon(loadingBarId, x, y);
-    }, 1);
-
+        var loadingBarPositionUpdateInterval = setInterval(function(){
+            loadingBarPositon(loadingBarId, x, y);
+        }, 1);
+    }
 
     //Base interval for longpress
     var interval = setInterval(function(){
-        afterLongpress(element);
+
+        afterLongpress(element);//you can change this line to whatever you like script to do after longpress succeded
         
-        clearLoadingBar(loadingBarId);
-        clearInterval(loadingBarPositionUpdateInterval);
-        clearInterval(loadingBarUpdateInterval);
+        if(loadingBarEnabled)
+        {
+            clearLoadingBar(loadingBarId);
+            clearInterval(loadingBarPositionUpdateInterval);
+            clearInterval(loadingBarUpdateInterval);
+        }
         clearInterval(interval);
     }, time * 1000);
 
 
     //Cancel longpress
     element.addEventListener("mouseup", function(){
-        mouseIsDown = false;
-
         clearInterval(interval);
-        clearInterval(loadingBarPositionUpdateInterval);
-        clearInterval(loadingBarUpdateInterval);
-        clearLoadingBar(loadingBarId);
+        if(loadingBarEnabled)
+        {
+            clearLoadingBar(loadingBarId);
+            clearInterval(loadingBarPositionUpdateInterval);
+            clearInterval(loadingBarUpdateInterval);
+        }
     }); 
 }
 
 function loadingBar(loadingBarId, time, updateRate)
 {
+    var bar = document.getElementById(loadingBarId);
+
     var unit = (updateRate / time)/10;
     loadingBarProgress += unit;
 
-    console.log(loadingBarProgress+"%/100%"); //temp
-
-    //loadingBarId.style. ;
+    bar.style.width = 1-(loadingBarProgress/100)+"em";
+    bar.style.height = 1-(loadingBarProgress/100)+"em";
 }
 
 //set position of loading bar
@@ -66,9 +79,11 @@ function loadingBarPositon(loadingBarId, x, y)
 {
     var bar = document.getElementById(loadingBarId);
     
-    var offsetX = 7.5;
-    var offsetY = 7.5;
+    //You can change offsets to whatever you like
+    var offsetX = 10;
+    var offsetY = 10;
 
+    //Set loading bar position
     bar.style.top = y+offsetY+"px";
     bar.style.left = x+offsetX+"px";
 }
