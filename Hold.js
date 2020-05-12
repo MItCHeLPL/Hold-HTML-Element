@@ -56,10 +56,14 @@ function longPress(mainListener, time, loadingBarEnabled, mobile)
         var x = 0;
         var y = 0;
 
+
+        //If you want to get loading bar percentage
         //Initialize loading bar progress update
-        var loadingBarUpdateInterval = setInterval(function(){
+        /*var loadingBarUpdateInterval = setInterval(function(){
             calculateLoadingBar(time);
-        }, loadingBarUpdateRate);
+        }, loadingBarUpdateRate);*/
+
+
 
         //Set loading bar position to the cursor position
         mainListener.addEventListener("mousemove", function(e){
@@ -67,6 +71,8 @@ function longPress(mainListener, time, loadingBarEnabled, mobile)
             y = e.pageY;
             loadingBarPositon(x, y);
         });
+
+        document.documentElement.style.setProperty("--loadingBarTime", time+"s");
 
         //Display loading bar
         loadingBar.style.display="block";
@@ -106,9 +112,11 @@ function calculateLoadingBar(time)
 
 
 
+    /*document.documentElement.style.setProperty("--loadingBarProgress", 1-(loadingBarProgress/100)+"em");
+
     //You can manipulate loading bar here
     loadingBar.style.width = 1-(loadingBarProgress/100)+"em";
-    loadingBar.style.height = 1-(loadingBarProgress/100)+"em";
+    loadingBar.style.height = 1-(loadingBarProgress/100)+"em";*/
 
 
 }

@@ -1,4 +1,9 @@
 /*Longpress loading bar*/
+:root 
+{
+    --loadingBarTime: 2s;
+}
+
 #loadingBar
 {
     /*Optional*/
@@ -11,13 +16,28 @@
     -moz-border-radius: 50%; 
     border-radius: 50%; 
 
+    animation-name: lbAnim;
+    animation-duration: var(--loadingBarTime);
+    animation-iteration-count: infinite;
+
     /*Required*/
     z-index: 99;
     position: fixed;
-    display:none;
+    display:none; 
 }
 
-
+@keyframes lbAnim{
+    0%   
+    {
+        width: 1em;
+        height: 1em;
+    }
+    100% 
+    {
+        width: 0em;
+        height: 0em;
+    }
+}
 
 html
 {
