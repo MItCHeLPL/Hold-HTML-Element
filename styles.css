@@ -1,50 +1,26 @@
-/*Longpress loading bar*/
 :root 
 {
-    --loadingBarTime: 2s;
+    --holdTime: 2s;
 }
 
-#loadingBar
+.loadingAnimationClass
 {
-    /*Optional*/
-    width: 1em;
-    height: 1em;
-
-    background-color: rgb(62, 140, 243);
-
-    -webkit-border-radius: 50%; 
-    -moz-border-radius: 50%; 
-    border-radius: 50%; 
-
-    /*Required*/
-    z-index: 99;
-    position: fixed;
-    display:none; 
-}
-
-.lbAnimationClass
-{
-    animation-name: lbAnim;
-    animation-duration: var(--loadingBarTime);
+    animation-name: loadingAnim;
+    animation-duration: var(--holdTime);
     animation-iteration-count: 1;
 }
 
-@keyframes lbAnim{
+@keyframes loadingAnim
+{
     0%   
     {
-        width: 1em;
-        height: 1em;
+        opacity: 0.5;
     }
     100% 
     {
-        width: 0em;
-        height: 0em;
+        opacity: 1;
     }
 }
-
-
-
-
 
 html
 {
