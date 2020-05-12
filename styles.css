@@ -16,14 +16,17 @@
     -moz-border-radius: 50%; 
     border-radius: 50%; 
 
-    animation-name: lbAnim;
-    animation-duration: var(--loadingBarTime);
-    animation-iteration-count: infinite;
-
     /*Required*/
     z-index: 99;
     position: fixed;
     display:none; 
+}
+
+.lbAnimationClass
+{
+    animation-name: lbAnim;
+    animation-duration: var(--loadingBarTime);
+    animation-iteration-count: 1;
 }
 
 @keyframes lbAnim{
@@ -38,6 +41,10 @@
         height: 0em;
     }
 }
+
+
+
+
 
 html
 {

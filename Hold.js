@@ -17,19 +17,19 @@ function afterLongpress(mainListener)
 
 
 //SCRIPT
-var mainListeners = document.querySelectorAll('[data-hold="standard"]'); //elements with hold enabled  
-var mainListenersBar = document.querySelectorAll('[data-hold="bar"]'); //elements with hold enabled and loading bar enabled
+var mainListeners = document.querySelectorAll('[data-holdMode="standard"]'); //elements with hold enabled  
+var mainListenersBar = document.querySelectorAll('[data-holdMode="bar"]'); //elements with hold enabled and loading bar enabled
 
 //without bar
 mainListeners.forEach(function(value, index){
-    mainListeners[index].addEventListener("mousedown", function(){longPress(mainListeners[index], parseInt(mainListeners[index].getAttribute("data-time")))});
-    mainListeners[index].addEventListener("touchstart", function(){longPress(mainListeners[index], parseInt(mainListeners[index].getAttribute("data-time")), false, true)}, {passive: true}); //don't use loading bar when using mobile
+    mainListeners[index].addEventListener("mousedown", function(){longPress(mainListeners[index], parseInt(mainListeners[index].getAttribute("data-holdTime")))});
+    mainListeners[index].addEventListener("touchstart", function(){longPress(mainListeners[index], parseInt(mainListeners[index].getAttribute("data-holdTime")), false, true)}, {passive: true}); //don't use loading bar when using mobile
 });
 
 //when using bar
 mainListenersBar.forEach(function(value, index){
-    mainListenersBar[index].addEventListener("mousedown", function(){longPress(mainListenersBar[index], parseInt(mainListenersBar[index].getAttribute("data-time")), true)});
-    mainListenersBar[index].addEventListener("touchstart", function(){longPress(mainListenersBar[index], parseInt(mainListenersBar[index].getAttribute("data-time")), true, true)}, {passive: true}); //don't use loading bar when using mobile
+    mainListenersBar[index].addEventListener("mousedown", function(){longPress(mainListenersBar[index], parseInt(mainListenersBar[index].getAttribute("data-holdTime")), true)});
+    mainListenersBar[index].addEventListener("touchstart", function(){longPress(mainListenersBar[index], parseInt(mainListenersBar[index].getAttribute("data-holdTime")), true, true)}, {passive: true}); //don't use loading bar when using mobile
 });
 
 var loadingBarProgress = 0; //From 0 to 100
@@ -56,14 +56,10 @@ function longPress(mainListener, time, loadingBarEnabled, mobile)
         var x = 0;
         var y = 0;
 
-
-        //If you want to get loading bar percentage
         //Initialize loading bar progress update
-        /*var loadingBarUpdateInterval = setInterval(function(){
+        var loadingBarUpdateInterval = setInterval(function(){
             calculateLoadingBar(time);
-        }, loadingBarUpdateRate);*/
-
-
+        }, loadingBarUpdateRate);
 
         //Set loading bar position to the cursor position
         mainListener.addEventListener("mousemove", function(e){
@@ -73,6 +69,8 @@ function longPress(mainListener, time, loadingBarEnabled, mobile)
         });
 
         document.documentElement.style.setProperty("--loadingBarTime", time+"s");
+
+        loadingBar.classList.add("lbAnimationClass");
 
         //Display loading bar
         loadingBar.style.display="block";
@@ -110,14 +108,9 @@ function calculateLoadingBar(time)
     var unit = (loadingBarUpdateRate / time)/10;
     loadingBarProgress += unit;
 
-
-
-    /*document.documentElement.style.setProperty("--loadingBarProgress", 1-(loadingBarProgress/100)+"em");
-
     //You can manipulate loading bar here
-    loadingBar.style.width = 1-(loadingBarProgress/100)+"em";
-    loadingBar.style.height = 1-(loadingBarProgress/100)+"em";*/
 
+    /*document.documentElement.style.setProperty("--loadingBarProgress", 1-(loadingBarProgress/100)+"em");*/
 
 }
 
@@ -141,6 +134,7 @@ function clearLoadingBar()
 {
     loadingBarProgress = 0; //reset progress bar
     loadingBar.style.display = "none"; //hide loading bar
+    loadingBar.classList.remove("lbAnimationClass");
 }
 
 //Clear intervals and listeners
