@@ -91,6 +91,23 @@ div
     color: darkorange;
 }
 
+footer
+{
+    color: #9D9D9D;
+    font-size: .7em;
+    background-color: #212121;
+
+
+    position: fixed;
+    bottom: 0;
+    z-index: 6;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: .7em;
+}
+
 @media only screen and (max-width: 768px) 
 {
     body
