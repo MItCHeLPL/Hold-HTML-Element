@@ -14,7 +14,11 @@
 ## Usage
 Add this attribute into any element in your page:
 ```html
-data-hold="[how many seconds you want to wait]"
+data-hold="(how many seconds you want to wait)"
+```
+For example:
+```html
+<div data-hold="2"></div>
 ```
 
 ## Example
