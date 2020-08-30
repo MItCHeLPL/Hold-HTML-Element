@@ -13,7 +13,7 @@
 
 ## Usage
 Add this attribute into any element in your page:
-```
+```html
 data-hold="[how many seconds you want to wait]"
 ```
 
